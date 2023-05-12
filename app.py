@@ -27,3 +27,22 @@ def scrape():
             data=col_data.text.strip()
             temp_list.append(data)
         scraped_data.append(temp_list)
+
+stars_data=[]
+
+for i in range(0,len(scraped_data)):
+    star_names=scraped_data[i][1]
+    distance=scraped_data[i][3]
+    mass=scaped_data[i][5]
+    radius=scraped_data[i][6]
+    lum=scraped_data[i][7]
+    
+    required_data=[star_names,distance,mass,radius,lum]
+    stars_data.append(required_data)
+
+headers=['star_name','distance','mass','radius','luminosity']
+
+stars_df_1=pd.DataFrame(stars_data,columns=headers)
+
+stars_df_1.to_csv('scraped_data.csv',index=True,index_label='id')   
+    
